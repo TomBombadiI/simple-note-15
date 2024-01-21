@@ -1,10 +1,9 @@
 <div class="note-item-data">
-    <div class="note-item-title">Title Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro libero perferendis tenetur debitis officiis itaque!</div>
-    <div class="note-item-text">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nemo architecto totam eum deserunt tempore aliquam id. Dolores tempore, iusto saepe minima distinctio omnis corporis amet eius, sequi, minus nulla. 
-    </div>
-    <div class="note-item-date">10.02.2025 г.</div>
+    <div class="note-item-title">{{ note.title }}</div>
+    <div class="note-item-text">{{ note.text }}</div>
+    <div class="note-item-date">{{ note.date }}</div>
 </div>
-<div class="note-item-img">
-    <img src="https://www.wallpaperflare.com/static/27/787/660/cat-muzzle-eyes-brown-wallpaper.jpg" alt="">
+
+<div *ngIf="note.img" class="note-item-img">
+    <img [src]="note.img" alt="">
 </div>

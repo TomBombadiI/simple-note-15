@@ -1,3 +1,5 @@
-<app-note-item></app-note-item>
-<app-note-item></app-note-item>
-<app-note-item></app-note-item>
+<p-orderList [value]="notes" [listStyle]="{'padding': '0', 'width': '100%'}">
+    <ng-template let-note pTemplate="item">
+        <app-note-item [note]="note"></app-note-item>
+    </ng-template>
+</p-orderList>

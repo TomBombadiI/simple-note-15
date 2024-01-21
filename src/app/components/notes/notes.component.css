@@ -1,9 +1,10 @@
 app-note-item {
     flex: 0 0 150px;
-    max-width: 100%;
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    margin-bottom: 30px;
+    height: 150px;
+    width: 100%;
     display: flex;
+}
+
+p-orderlist {
+    width: 100%;
 }
