@@ -5,16 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
-import { NodesComponent } from './components/nodes/nodes.component';
+import { NotesComponent } from './components/notes/notes.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ButtonModule } from 'primeng/button';
+import { NoteItemComponent } from './components/note-item/note-item.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NodesComponent,
-        HeaderComponent
+        NotesComponent,
+        HeaderComponent,
+        NoteItemComponent
     ],
     imports: [
         BrowserModule,

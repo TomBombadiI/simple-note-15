@@ -13,3 +13,10 @@ app-header::before {
     height: 4px;
     background-color: #ccc;
 }
+
+app-notes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
