@@ -1,0 +1,19 @@
+.header-block {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.header-sign {
+    justify-content: flex-end;
+}
+.header-sign button {
+    margin-left: 10px;
+}
+
+.header-logo {
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+}

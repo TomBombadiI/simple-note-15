@@ -5,22 +5,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
-import {EditorModule} from 'primeng/editor';
+import { NodesComponent } from './components/nodes/nodes.component';
+import { HeaderComponent } from './components/header/header.component';
+
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        NodesComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
-        EditorModule
+        ButtonModule
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule { 
-    
+export class AppModule {
+
 }
