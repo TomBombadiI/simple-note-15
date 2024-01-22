@@ -14,6 +14,7 @@ export class NotesComponent {
   constructor(private dbService: NgxIndexedDBService) {
     this.dbService.getAll('notes').subscribe((data : INote[]) => {
       this.notes = data;
+      data.sort((a, b) => b.date - a.date);
     })
   }
 }
