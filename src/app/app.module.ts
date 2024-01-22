@@ -14,6 +14,23 @@ import { OrderListModule } from 'primeng/orderlist';
 import { AppRoutingModule } from './app-routing.module';
 import { NoteFormComponent } from './components/note-form/note-form.component';
 
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+
+const dbConfig: DBConfig = {
+    name: 'SimpleDb',
+    version: 1,
+    objectStoresMeta: [{
+        store: 'notes',
+        storeConfig: { keyPath: 'id', autoIncrement: true },
+        storeSchema: [
+            { name: 'title', keypath: 'title', options: { unique: false } },
+            { name: 'text', keypath: 'text', options: { unique: false } },
+            { name: 'date', keypath: 'date', options: { unique: false } },
+            { name: 'img', keypath: 'img', options: { unique: false } },
+        ]
+    }]
+}
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +46,8 @@ import { NoteFormComponent } from './components/note-form/note-form.component';
         HttpClientModule,
         ButtonModule,
         OrderListModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NgxIndexedDBModule.forRoot(dbConfig)
     ],
     providers: [],
     bootstrap: [AppComponent]
