@@ -11,13 +11,16 @@ import { NoteItemComponent } from './components/note-item/note-item.component';
 
 import { ButtonModule } from 'primeng/button';
 import { OrderListModule } from 'primeng/orderlist';
+import { AppRoutingModule } from './app-routing.module';
+import { NoteFormComponent } from './components/note-form/note-form.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NotesComponent,
         HeaderComponent,
-        NoteItemComponent
+        NoteItemComponent,
+        NoteFormComponent
     ],
     imports: [
         BrowserModule,
@@ -25,7 +28,8 @@ import { OrderListModule } from 'primeng/orderlist';
         FormsModule,
         HttpClientModule,
         ButtonModule,
-        OrderListModule
+        OrderListModule,
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]
