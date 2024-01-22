@@ -3,11 +3,13 @@
     flex-direction: column;
 }
 #title {
-    margin: 5px 0;
+    margin: 5px 0 0;
 }
 
-small {
-    color: #868686;
+.alert {
+    color: red;
+	margin-top: 8px;
+	font-size: 14px;
 }
 
 .note-form-field {

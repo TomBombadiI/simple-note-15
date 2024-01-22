@@ -1,23 +1,29 @@
 import { Component } from '@angular/core';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-note-form',
   templateUrl: './note-form.component.html',
   styleUrls: ['./note-form.component.css'],
-  providers: [MessageService, ConfirmationService]
+  providers: [ConfirmationService]
 })
 export class NoteFormComponent {
   title: string = '';
   text: string = '';
   img: string = '';
+  private fb = new FormBuilder();
 
-  constructor(private confirmationService: ConfirmationService, 
-    private messageService: MessageService, private router: Router,
-    private dbService: NgxIndexedDBService) {
-  }
+  noteForm = this.fb.group({
+    title: ['', Validators.required],
+    text: ['', Validators.required],
+    img: ''
+  });
+
+  constructor(private confirmationService: ConfirmationService, private router: Router,
+    private dbService: NgxIndexedDBService) {}
 
   confirmCancel() {
     this.confirmationService.confirm({
@@ -36,13 +42,16 @@ export class NoteFormComponent {
   }
 
   addNote() {
-    this.dbService.add('notes', {
-      title: this.title,
-      text: this.text,
-      img: this.img,
-      date: +(new Date()),
-    }).subscribe(key => {
-      console.log('key: ', key);
-    })
+    if (this.noteForm.valid) {
+      this.dbService.add('notes', {
+        title: this.title,
+        text: this.text.replace(/<(.|\n)*?>/g, ''),
+        formattedText: this.text,
+        img: this.img,
+        date: +(new Date()),
+      }).subscribe(key => {
+        this.router.navigate(['']);
+      })
+    }
   }
 }

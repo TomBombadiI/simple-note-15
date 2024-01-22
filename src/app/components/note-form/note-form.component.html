@@ -1,63 +1,66 @@
-<div class="note-form-title note-form-field">
-    <label for="title">Заголовок</label>
-    <input id="title" type="text" pInputText [(ngModel)]="title">
-    <small id="title-help">Основная информация о заметке</small>
-</div>
-<div class="note-form-text note-form-field">
-    <label class="text-label" for="text">Текст заметки</label>
-    <p-editor id="#text" [(ngModel)]="text" [style]="{height: '400px'}">
-        <ng-template pTemplate="header">
-            <span class="ql-formats">
-                <select class="ql-size">
-                    <option value="small">small</option>
-                    <option selected></option>
-                    <option value="large">large</option>
-                    <option value="huge">huge</option>
-                </select>
-            </span>
-            <span class="ql-formats">
-                <button class="ql-bold" aria-label="Bold"></button>
-                <button class="ql-italic" aria-label="Italic"></button>
-                <button class="ql-underline" aria-label="Underline"></button>
-                <button class="ql-strike" aria-label="Strike"></button>
-            </span><span class="ql-formats">
-                <select title="Text Color" class="ql-color" defaultValue="rgb(0, 0, 0)">
-                    <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
-                    <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
-                </select>
-                <span class="ql-format-separator"></span>
-                <select title="Background Color" class="ql-background" defaultValue="rgb(255, 255, 255)">
-                    <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
-                    <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
-                </select>
-            </span>
-            <span class="ql-formats">
-                <button class="ql-list" value="ordered" type="button"></button>
-                <button class="ql-list" value="bullet"></button>
-                <select title="Text Alignment" class="ql-align">
-                    <option selected>Gauche</option>
-                    <option value="center" label="Center"></option>
-                    <option value="right" label="Right"></option>
-                    <option value="justify" label="Justify"></option>
-                </select>
-            </span>
-        </ng-template>
-    </p-editor>
-</div>
-<div class="note-form-field">
-    <label class="input-file ">
-        <input type="file" name="file" (change)="chooseImg($event)">
-        <span pButton class="p-button-link" class="input-file-btn">Выберите файл</span>
-        <span class="input-file-text"></span>
-    </label>
-    <div class="note-form-actions">
-        <p-confirmDialog #cd [style]="{width: '50vw'}">
-            <ng-template pTemplate="footer">
-                <button type="button" pButton icon="pi pi-times" label="Нет" (click)="cd.reject()"></button>
-                <button type="button" pButton icon="pi pi-check" label="Да" (click)="cd.accept()"></button>
-            </ng-template>
-        </p-confirmDialog>
-        <button (click)="addNote()" pButton class="p-button-success">Сохранить</button>
-        <button (click)="confirmCancel()" pButton class="p-button-danger">Отменить</button>
+<form [formGroup]="noteForm" (ngSubmit)="addNote()">
+    <div class="note-form-title note-form-field">
+        <label for="title">Заголовок</label>
+        <input id="title" type="text" pInputText [(ngModel)]="title" formControlName="title" required maxlength="255">
+        <div class="alert" [hidden]="noteForm.get('title').valid || noteForm.get('title').untouched" id="title-help">Поле обязательно для заполнения</div>
     </div>
-</div>
+    <div class="note-form-text note-form-field">
+        <label class="text-label" for="text">Текст заметки</label>
+        <p-editor formControlName="text" id="#text" [(ngModel)]="text" [style]="{height: '400px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <select class="ql-size">
+                        <option value="small">small</option>
+                        <option selected></option>
+                        <option value="large">large</option>
+                        <option value="huge">huge</option>
+                    </select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-bold" aria-label="Bold"></button>
+                    <button class="ql-italic" aria-label="Italic"></button>
+                    <button class="ql-underline" aria-label="Underline"></button>
+                    <button class="ql-strike" aria-label="Strike"></button>
+                </span><span class="ql-formats">
+                    <select title="Text Color" class="ql-color" defaultValue="rgb(0, 0, 0)">
+                        <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
+                        <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
+                    </select>
+                    <span class="ql-format-separator"></span>
+                    <select title="Background Color" class="ql-background" defaultValue="rgb(255, 255, 255)">
+                        <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
+                        <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
+                    </select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-list" value="ordered" type="button"></button>
+                    <button class="ql-list" value="bullet"></button>
+                    <select title="Text Alignment" class="ql-align">
+                        <option selected>Gauche</option>
+                        <option value="center" label="Center"></option>
+                        <option value="right" label="Right"></option>
+                        <option value="justify" label="Justify"></option>
+                    </select>
+                </span>
+            </ng-template>
+        </p-editor>
+        <div class="alert" [hidden]="noteForm.get('text').valid || noteForm.get('text').untouched" id="title-help">Поле обязательно для заполнения</div>
+    </div>
+    <div class="note-form-field">
+        <label class="input-file ">
+            <input formControlName="img" type="file" name="file" (change)="chooseImg($event)">
+            <span pButton class="p-button-link" class="input-file-btn">Выберите файл</span>
+            <span class="input-file-text"></span>
+        </label>
+        <div class="note-form-actions">
+            <p-confirmDialog #cd [style]="{width: '50vw'}">
+                <ng-template pTemplate="footer">
+                    <button type="button" pButton icon="pi pi-times" label="Нет" (click)="cd.reject()"></button>
+                    <button type="button" pButton icon="pi pi-check" label="Да" (click)="cd.accept()"></button>
+                </ng-template>
+            </p-confirmDialog>
+            <button type="submit" [disabled]="!noteForm.valid" pButton class="p-button-success">Сохранить</button>
+            <button (click)="confirmCancel()" pButton class="p-button-danger">Отменить</button>
+        </div>
+    </div>
+</form>
