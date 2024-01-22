@@ -1,5 +1,6 @@
-<p-orderList [value]="notes" [listStyle]="{'padding': '0', 'width': '100%'}">
+<p-orderList *ngIf="notes.length" [value]="notes" [listStyle]="{'padding': '0', 'width': '100%'}">
     <ng-template let-note pTemplate="item">
         <app-note-item [note]="note"></app-note-item>
     </ng-template>
 </p-orderList>
+<div *ngIf="!notes.length" class="empty-list">Заметок нет!</div>
