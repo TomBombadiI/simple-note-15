@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,10 @@ import { Component, inject } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor() {
+  constructor(private dbService: NgxIndexedDBService, private router: Router) {
   }
+
+  isNewNoteRoute() { return this.router.url === "/new" }
+  isNotesRoute() { return this.router.url === "/" }
+
 }

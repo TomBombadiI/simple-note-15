@@ -11,6 +11,11 @@ import { NoteItemComponent } from './components/note-item/note-item.component';
 
 import { ButtonModule } from 'primeng/button';
 import { OrderListModule } from 'primeng/orderlist';
+import { InputTextModule } from 'primeng/inputtext';
+import { EditorModule } from 'primeng/editor'
+import { FileUploadModule } from 'primeng/fileupload';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
 import { AppRoutingModule } from './app-routing.module';
 import { NoteFormComponent } from './components/note-form/note-form.component';
 
@@ -47,7 +52,11 @@ const dbConfig: DBConfig = {
         ButtonModule,
         OrderListModule,
         AppRoutingModule,
-        NgxIndexedDBModule.forRoot(dbConfig)
+        NgxIndexedDBModule.forRoot(dbConfig),
+        InputTextModule,
+        EditorModule,
+        FileUploadModule,
+        ConfirmDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent]

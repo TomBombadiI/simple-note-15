@@ -1,5 +1,4 @@
 app-header {
-    flex: 0 1 90px;
     display: flex;
     position: relative;
 }
@@ -14,9 +13,6 @@ app-header::before {
     background-color: #ccc;
 }
 
-app-notes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
+.test {
+    background-color: #000;
 }
