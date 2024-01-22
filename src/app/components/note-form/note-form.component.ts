@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { FormBuilder, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
+import { INote } from '../../models/note'
 
 @Component({
   selector: 'app-note-form',
@@ -10,11 +12,12 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./note-form.component.css'],
   providers: [ConfirmationService]
 })
-export class NoteFormComponent {
+export class NoteFormComponent implements OnInit {
+  private fb = new FormBuilder();
+
   title: string = '';
   text: string = '';
   img: string = '';
-  private fb = new FormBuilder();
 
   noteForm = this.fb.group({
     title: ['', Validators.required],
@@ -22,21 +25,28 @@ export class NoteFormComponent {
     img: ''
   });
 
-  constructor(private confirmationService: ConfirmationService, private router: Router,
-    private dbService: NgxIndexedDBService) {}
+  constructor(
+    private confirmationService: ConfirmationService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private dbService: NgxIndexedDBService) { }
 
   confirmCancel() {
-    this.confirmationService.confirm({
-      message: "Вы действительно хотите отменить создание заметки?",
-      header: "Подтверждение",
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => this.router.navigate(['']),
-    })
+    if (this.noteForm.valid) {
+      this.confirmationService.confirm({
+        message: "Вы действительно хотите отменить создание заметки?",
+        header: "Подтверждение",
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => this.router.navigate(['']),
+      })
+    } else {
+      this.router.navigate([''])
+    }
   }
 
   chooseImg(event) {
     const file = event.target.files[0];
-    
+
     document.querySelector(".input-file-text").textContent = file.name;
     this.img = file;
   }
@@ -51,6 +61,18 @@ export class NoteFormComponent {
         date: +(new Date()),
       }).subscribe(key => {
         this.router.navigate(['']);
+      })
+    }
+  }
+
+  ngOnInit() {
+    if (this.router.url.includes('/edit/')) {
+      const id = this.route.snapshot.paramMap.get('id')!;
+
+      this.dbService.getByID('notes', +id).subscribe((data: INote) => {
+        this.title = data.title;
+        this.text = data.formattedText;
+        this.img = data.img;
       })
     }
   }

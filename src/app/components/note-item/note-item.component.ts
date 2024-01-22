@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { INote } from "../../models/note";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note-item',
@@ -8,4 +9,6 @@ import { INote } from "../../models/note";
 })
 export class NoteItemComponent {
   @Input() note!: INote;
+
+  constructor(private router: Router) {}
 }

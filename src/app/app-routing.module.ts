@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NoteFormComponent
+  },
+  {
+    path: 'edit/:id',
+    component: NoteFormComponent
   }
 ]
 
