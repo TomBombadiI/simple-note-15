@@ -1,6 +1,6 @@
 <div class="note-item-data" [routerLink]="['edit', note.id]">
     <div class="note-item-title">{{ note.title }}</div>
-    <div class="note-item-text">{{ note.text }}</div>
+    <div class="note-item-text" [innerHTML]="note.formattedText"></div>
     <div class="note-item-date">{{ note.date | date: ['dd.MM.yyyyг. HH:mm']}}</div>
 </div>
 <div *ngIf="note.img" class="note-item-img">

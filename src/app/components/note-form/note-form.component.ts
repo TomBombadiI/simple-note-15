@@ -33,7 +33,7 @@ export class NoteFormComponent implements OnInit {
   confirmCancel() {
     if (this.noteForm.valid) {
       this.confirmationService.confirm({
-        message: "Вы действительно хотите отменить создание заметки?",
+        message: "Вы действительно хотите отменить сохранение заметки?",
         header: "Подтверждение",
         icon: 'pi pi-exclamation-triangle',
         accept: () => this.router.navigate(['']),

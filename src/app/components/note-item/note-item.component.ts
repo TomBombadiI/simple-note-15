@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { INote } from "../../models/note";
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -15,7 +15,7 @@ export class NoteItemComponent {
 
   constructor(
     private router: Router,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
     ) {}
 
   confirmDelete() {
