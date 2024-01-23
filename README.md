@@ -1,27 +1,17 @@
-# PrimeNG Angular-CLI
+# SimpleNote
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.
+Проект тестового задания на стажировку ИнфоТекс. Версия Angular - 15
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Сборка и запуск
+Для сборки проекта выполните "npm install". Для запуска - "ng serve".
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Возможности
+В приложении реализованы:
+- отображение списка записей;
+- записи включают в себя заголовок (не форматируется) и основной текст (может быть форматируемым);
+- записи можно добавлять, удалять, редактировать;
+- записи выводятся в хронологическом порядке, сначала самые новые;
+- в качестве хранилища используется indexeddb;
+- использовалась библиотека графических компонентов PrimeNG;
+- в качестве редактора использовалась библиотека quill, которая шла в комплекте с PrimeNG;
+- для удобства использовалась обертка для indexeddb api - библиотека ngx-indexed-db.
