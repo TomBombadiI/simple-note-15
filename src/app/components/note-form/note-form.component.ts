@@ -51,18 +51,40 @@ export class NoteFormComponent implements OnInit {
     this.img = file;
   }
 
-  addNote() {
-    if (this.noteForm.valid) {
-      this.dbService.add('notes', {
-        title: this.title,
-        text: this.text.replace(/<(.|\n)*?>/g, ''),
-        formattedText: this.text,
-        img: this.img,
-        date: +(new Date()),
-      }).subscribe(key => {
-        this.router.navigate(['']);
-      })
+  saveNote() {
+    if (!this.noteForm.valid) return;
+
+    if (this.router.url === '/new') {
+      this.addNote();
+    } else {
+      const id = this.route.snapshot.paramMap.get('id')!;
+      this.updateNote(+id);
     }
+  }
+
+  addNote() {
+    this.dbService.add('notes', {
+      title: this.title,
+      text: this.text.replace(/<(.|\n)*?>/g, ''),
+      formattedText: this.text,
+      img: this.img,
+      date: +(new Date()),
+    }).subscribe(key => {
+      this.router.navigate(['']);
+    })
+  }
+
+  updateNote(noteId: number) {
+    this.dbService.update('notes', {
+      id: noteId,
+      title: this.title,
+      text: this.text.replace(/<(.|\n)*?>/g, ''),
+      formattedText: this.text,
+      img: this.img,
+      date: +(new Date())
+    }).subscribe(() => {
+      this.router.navigate(['']);
+    })
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-<form [formGroup]="noteForm" (ngSubmit)="addNote()">
+<form [formGroup]="noteForm" (ngSubmit)="saveNote()">
     <div class="note-form-title note-form-field">
         <label for="title">Заголовок</label>
         <input id="title" type="text" pInputText [(ngModel)]="title" formControlName="title" required maxlength="255">
