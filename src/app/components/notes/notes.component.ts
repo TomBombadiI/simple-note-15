@@ -11,10 +11,23 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 export class NotesComponent {
   notes: INote[] = [];
 
-  constructor(private dbService: NgxIndexedDBService) {
+  deleteNote(id: number) {
+    this.dbService.delete('notes', id).subscribe((data: INote[]) => {
+      console.log(data)
+      this.notes = data;
+    })
+  }
+
+  loadNotes() {
     this.dbService.getAll('notes').subscribe((data : INote[]) => {
       this.notes = data;
       data.sort((a, b) => b.date - a.date);
     })
   }
+
+  constructor(private dbService: NgxIndexedDBService) {
+    this.loadNotes();
+  }
+
+
 }

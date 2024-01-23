@@ -3,7 +3,6 @@ import { ConfirmationService } from 'primeng/api';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { FormBuilder, Validators } from '@angular/forms';
-import { switchMap } from 'rxjs';
 import { INote } from '../../models/note'
 
 @Component({

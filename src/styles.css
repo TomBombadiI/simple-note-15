@@ -132,3 +132,8 @@ app-note-form {
     flex-direction: column;
     padding: 30px;
 }
+
+.p-orderlist-item:hover .note-item-delete {
+    opacity: .5;
+    pointer-events: all;
+}
