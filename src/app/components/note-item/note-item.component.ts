@@ -10,11 +10,12 @@ import { ConfirmationService } from 'primeng/api';
   providers: [ConfirmationService]
 })
 export class NoteItemComponent {
-  @Input() note!: INote;
-  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
+  @Input() note!: INote; // Получаем объект заметки от родителя (компонент notes)
+  // Получаем функцию delete от родителя, чтобы потом вызвать ее с передачей id заметки
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>(); 
 
   constructor(
-    private router: Router,
+    // Сервис для подтверждения действия от primeNG
     private confirmationService: ConfirmationService,
     ) {}
 
@@ -23,11 +24,12 @@ export class NoteItemComponent {
       message: "Вы действительно хотите удалить заметку?",
       header: "Подтверждение",
       icon: 'pi pi-exclamation-triangle',
-      accept: () => this.onDelete(),
+      accept: () => this.onDelete(), // Если пользователь нажал "Да"
     })
   }
 
   onDelete() {
+    // Вызываем delete и передаем туда id
     this.delete.emit(this.note.id);
   }
 

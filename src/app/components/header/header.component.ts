@@ -11,7 +11,6 @@ export class HeaderComponent {
   constructor(private dbService: NgxIndexedDBService, private router: Router) {
   }
 
-  isNewNoteRoute() { return this.router.url === "/new" }
+  // Главная страница?
   isNotesRoute() { return this.router.url === "/" }
-
 }
