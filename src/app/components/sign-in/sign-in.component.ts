@@ -34,5 +34,8 @@ export class SignInComponent implements OnInit {
     signin.then((result) => {
       this.ref.close();
     })
+    .catch(error => {
+      alert("Ошибка ввхода!");
+    })
   }
 }
