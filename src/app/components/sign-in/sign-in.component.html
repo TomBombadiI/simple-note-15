@@ -1,0 +1,15 @@
+<form [formGroup]="signInForm">
+    <div class="sign-in-email sign-in-field">
+        <input pInputText id="email" placeholder="Email" aria-describedby="email-help" [(ngModel)]="email" formControlName="email"/>
+    </div>
+    <div class="sign-in-password sign-in-field">
+        <p-password placeholder="Пароль" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" formControlName="password"></p-password>
+    </div>
+    <div class="sign-in-field sign-in-forgot-pass">
+        <a>Забыли пароль?</a>
+    </div>
+    <div class="sign-in-field">
+        <button pButton [disabled]="!signInForm.valid" class="p-button-outlined">Регистрация</button>
+        <button pButton [disabled]="!signInForm.valid" (click)="signIn()">Войти</button>
+    </div>
+</form>

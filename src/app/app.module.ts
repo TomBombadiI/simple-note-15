@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './services/auth.service';
 
 // Компоненты
 import { NotesComponent } from './components/notes/notes.component';
@@ -20,9 +21,19 @@ import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor'
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { PasswordModule } from 'primeng/password';
+import { InputMaskModule } from 'primeng/inputmask';
 
 // Библиотека ngx-indexed-db
 import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 // Конфигурация базы данных
 const dbConfig: DBConfig = {
@@ -46,7 +57,8 @@ const dbConfig: DBConfig = {
         NotesComponent,
         HeaderComponent,
         NoteItemComponent,
-        NoteFormComponent
+        NoteFormComponent,
+        SignInComponent
     ],
     imports: [
         BrowserModule,
@@ -61,9 +73,15 @@ const dbConfig: DBConfig = {
         InputTextModule,
         EditorModule,
         FileUploadModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        DynamicDialogModule,
+        PasswordModule,
+        InputMaskModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
     ],
-    providers: [],
+    providers: [AuthService, {provide: FIREBASE_OPTIONS, useValue: environment.firebase}],
     bootstrap: [AppComponent]
 })
 export class AppModule {

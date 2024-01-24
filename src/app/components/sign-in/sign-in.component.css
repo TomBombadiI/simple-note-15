@@ -1,0 +1,32 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sign-in-email {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+
+.sign-in-field:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sign-in-forgot-pass {
+    text-align: center;
+    
+}
+.sign-in-forgot-pass a:hover {
+    color: #000;
+}
+.sign-in-forgot-pass a {
+    color: #ccc;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all linear .2s;
+}
