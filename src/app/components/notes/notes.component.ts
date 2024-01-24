@@ -13,6 +13,7 @@ export class NotesComponent {
   deleteNote(id: number) {
     this.dbService.delete('notes', id).subscribe((data: INote[]) => {
       this.notes = data;
+      this.notes.sort((a, b) => b.date - a.date);
     })
   }
 
